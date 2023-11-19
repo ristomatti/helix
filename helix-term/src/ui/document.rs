@@ -8,7 +8,7 @@ use helix_core::syntax::HighlightEvent;
 use helix_core::text_annotations::TextAnnotations;
 use helix_core::{visual_offset_from_block, Position, RopeSlice};
 use helix_stdx::rope::RopeSliceExt;
-use helix_view::editor::{WhitespaceConfig, WhitespaceRenderValue};
+ use helix_view::editor::{WhitespaceConfig, WhitespaceRenderValue};
 use helix_view::graphics::Rect;
 use helix_view::theme::Style;
 use helix_view::view::ViewPosition;
@@ -300,12 +300,12 @@ pub fn render_text<'t>(
         }
 
         // acquire the correct grapheme style
-        if char_pos >= syntax_style_span.1 {
+        while char_pos >= syntax_style_span.1 {
             syntax_style_span = syntax_styles
                 .next()
                 .unwrap_or((Style::default(), usize::MAX));
         }
-        if char_pos >= overlay_style_span.1 {
+        while char_pos >= overlay_style_span.1 {
             overlay_style_span = overlay_styles
                 .next()
                 .unwrap_or((Style::default(), usize::MAX));
