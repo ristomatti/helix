@@ -4,7 +4,8 @@ use std::fmt;
 use serde::{Deserialize, Serialize};
 
 /// Describes the severity level of a [`Diagnostic`].
-#[derive(Debug, Clone, Copy, Eq, PartialEq, PartialOrd, Ord, Deserialize, Serialize)]
+#[derive(Debug, Clone, Copy, Eq, PartialEq, PartialOrd, Ord, Serialize, Deserialize)]
+#[serde(rename_all = "lowercase")]
 pub enum Severity {
     Hint,
     Info,
@@ -23,6 +24,12 @@ impl Default for Severity {
 pub struct Range {
     pub start: usize,
     pub end: usize,
+}
+
+impl Range {
+    pub fn contains(self, pos: usize) -> bool {
+        (self.start..self.end).contains(&pos)
+    }
 }
 
 #[derive(Debug, Eq, Hash, PartialEq, Clone, Deserialize, Serialize)]
@@ -53,6 +60,13 @@ pub struct Diagnostic {
     pub tags: Vec<DiagnosticTag>,
     pub source: Option<String>,
     pub data: Option<serde_json::Value>,
+}
+
+impl Diagnostic {
+    #[inline]
+    pub fn severity(&self) -> Severity {
+        self.severity.unwrap_or(Severity::Warning)
+    }
 }
 
 // TODO turn this into an enum + feature flag when lsp becomes optional
