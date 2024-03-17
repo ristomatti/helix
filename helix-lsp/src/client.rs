@@ -1,4 +1,5 @@
 use crate::{
+    copilot_types,
     file_operations::FileOperationsInterest,
     find_lsp_workspace, jsonrpc,
     transport::{Payload, Transport},
@@ -1520,6 +1521,19 @@ impl Client {
         })
     }
 
+    pub fn copilot_completion(
+        &self,
+        document: copilot_types::Document,
+    ) -> impl Future<Output = Result<Option<copilot_types::CompletionResponse>>> {
+        let params = copilot_types::CompletionRequestParams { doc: document };
+        let request = self.call::<copilot_types::CompletionRequest>(params);
+
+        async move {
+            let json = request.await?;
+            let response: Option<copilot_types::CompletionResponse> = serde_json::from_value(json)?;
+            Ok(response)
+        }
+    }
     pub fn command(&self, command: lsp::Command) -> Option<impl Future<Output = Result<Value>>> {
         let capabilities = self.capabilities.get().unwrap();
 
