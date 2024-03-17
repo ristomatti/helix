@@ -237,6 +237,7 @@ impl MappableCommand {
 
     #[rustfmt::skip]
     static_commands!(
+        apply_copilot_completion, "Apply a copilot completion",
         no_op, "Do nothing",
         move_char_left, "Move left",
         move_char_right, "Move right",
@@ -1683,7 +1684,7 @@ pub fn scroll(cx: &mut Context, offset: usize, direction: Direction, sync_cursor
     let doc_text = doc.text().slice(..);
     let viewport = view.inner_area(doc);
     let text_fmt = doc.text_format(viewport.width, None);
-    let annotations = view.text_annotations(&*doc, None);
+    let mut annotations = view.text_annotations(&*doc, None);
     (view.offset.anchor, view.offset.vertical_offset) = char_idx_at_visual_offset(
         doc_text,
         view.offset.anchor,
@@ -6111,6 +6112,11 @@ fn jump_to_label(cx: &mut Context, labels: Vec<Range>, behaviour: Movement) {
             }
         });
     });
+}
+
+fn apply_copilot_completion(cx: &mut Context) {
+    let (view, doc) = current!(cx.editor);
+    doc.apply_copilot(view.id);
 }
 
 fn jump_to_word(cx: &mut Context, behaviour: Movement) {
