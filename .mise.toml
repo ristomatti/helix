@@ -1,0 +1,29 @@
+[env]
+INSTALL_PREFIX = "/usr/local"
+HELIX_DEFAULT_RUNTIME = "{{env.INSTALL_PREFIX}}/lib/helix/runtime"
+
+[tasks.clean]
+  description = "Clean"
+  run = "cargo clean"
+
+[tasks.build]
+  description = "Build"
+  run = "cargo build --manifest-path helix-term/Cargo.toml"
+
+[tasks.run]
+  description = "Run"
+  run = "target/debug/hx -a"
+
+[tasks.build-release]
+  description = "Build release"
+  run = "cargo build --profile opt --locked --manifest-path helix-term/Cargo.toml"
+  hide = true
+
+[tasks.install]
+  description = "Install"
+  depends = ["build-release"]
+  run = [
+    "sudo mv -f ${HELIX_DEFAULT_RUNTIME} ${HELIX_DEFAULT_RUNTIME}.bak || true",
+    "sudo cp -r runtime ${INSTALL_PREFIX}/lib/helix/",
+    "echo -e \"\nComplete install manually with:\n  sudo cp target/opt/hx ${INSTALL_PREFIX}/bin/hx-TAG\n  sudo ln -sf ${INSTALL_PREFIX}/bin/hx-TAG ${INSTALL_PREFIX}/bin/hx\"",
+  ]
