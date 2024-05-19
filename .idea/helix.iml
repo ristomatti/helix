@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="EMPTY_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/helix-core/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/helix-core/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/helix-dap/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/helix-event/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/helix-loader/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/helix-lsp/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/helix-parsec/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/helix-stdx/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/helix-stdx/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/helix-term/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/helix-term/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/helix-tui/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/helix-tui/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/helix-vcs/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/helix-view/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/helix-view/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/xtask/src" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/target" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
