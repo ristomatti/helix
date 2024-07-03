@@ -12,7 +12,7 @@ pub struct Handlers {
     // only public because most of the actual implementation is in helix-term right now :/
     pub completions: Sender<lsp::CompletionEvent>,
     pub signature_hints: Sender<lsp::SignatureHelpEvent>,
-    pub copilot: Option<Sender<lsp::CopilotEvent>>,
+    pub copilot: Option<Sender<lsp::CopilotRequestCompletionEvent>>,
 }
 
 impl Handlers {

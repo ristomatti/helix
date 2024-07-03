@@ -951,7 +951,6 @@ pub struct Breakpoint {
 use futures_util::stream::{Flatten, Once};
 
 pub struct Editor {
-    pub auto_render_copilot: bool,
     /// Current editing mode.
     pub mode: Mode,
     pub tree: Tree,
@@ -1102,7 +1101,6 @@ impl Editor {
         area.height -= 1;
 
         Self {
-            auto_render_copilot: conf.copilot_auto_render,
             mode: Mode::Normal,
             tree: Tree::new(area),
             next_document_id: DocumentId::default(),
